@@ -1,14 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 const Page = () => {
-  const [time, setTime] = useState(0);
-  const add = () => {
-    setTime((prev) => prev + 1);
+  const [time, setTime] = useState(60);
+  const minus = () => {
+    setTime((prev) => (prev > 0 ? prev - 1 : 0));
   };
-  useEffect(() => {
-    const int = setInterval(add, 1000);
-    return () => clearInterval(int);
-  }, []);
   const click1 = () => {
     setTime((prev) => (prev > 14 ? prev - 15 : 0));
   };
@@ -26,6 +22,11 @@ const Page = () => {
       </div>
     );
   };
+  useEffect(() => {
+    const int = setInterval(minus, 1000);
+    return () => clearInterval(int);
+  }, []);
+
   return (
     <div className="container1">
       <div className="time1">{realTime()}</div>
